@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="WHMISLabels" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3schools.com">
+<xs:schema id="WHMISLabels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   
   <!-- ATTRIBUTES W/ RESTRICTIONS -->
   <xs:attribute name="url">
