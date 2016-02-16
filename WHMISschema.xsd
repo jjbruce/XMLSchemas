@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="WHMISLabels" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3schools.com">
+  
+  <!-- ATTRIBUTES W/ RESTRICTIONS -->
+  <xs:attribute name="url">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="https://www.osha.gov/images/Healthhazard_big.jpg" />
+        <xs:enumeration value="https://www.osha.gov/images/Flame_big.jpg" />
+        <xs:enumeration value="https://www.osha.gov/images/Expoint_big.jpg" />
+        <xs:enumeration value="https://www.osha.gov/images/Gascylinder_big.jpg" />
+        <xs:enumeration value="https://www.osha.gov/images/Corrosion.jpg" />
+        <xs:enumeration value="https://www.osha.gov/images/Explbomb_big.jpg" />
+        <xs:enumeration value="https://www.osha.gov/images/Flameovercircle_big.jpg" />
+        <xs:enumeration value="https://www.osha.gov/images/Environment_big.jpg" />
+        <xs:enumeration value="https://www.osha.gov/images/SkullxCB_big.jpg" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="signalWord">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="DANGER" />
+        <xs:enumeration value="WARNING" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  
+  <xs:element name="WHMISLabels">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <!-- an xs:choice with unbounded maxOccurs allows for supplierLabel and workplaceLabel elements to appear in any order, for any amount of occurances -->
+        
+        <!-- SUPPLIER LABEL -->
+        <xs:element name="supplierLabel">
+          <xs:complexType>
+            <xs:sequence>
+              
+              <xs:element name="pictogram" minOccurs="1" maxOccurs="9">
+                <xs:complexType>
+                  <xs:attribute ref="url" use="required"/>
+                </xs:complexType>
+              </xs:element>
+              
+              <xs:element name="hazardStatement" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+              <xs:element name="precautionaryStatement" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+              <xs:element name="supplementalInformation" type="xs:string" minOccurs="0" maxOccurs="1" />
+            
+            </xs:sequence>
+            
+            <!-- SUPPLIERS ATTRIBUTES -->
+            <xs:attribute name="productIdentifier" type="xs:string" use="required" />         
+            <xs:attribute name="supplierIdentifier" type="xs:string" use="required" />
+            <xs:attribute ref="signalWord" use="required" />
+          </xs:complexType>
+        </xs:element>
+
+        <!-- WORKPLACE LABEL-->
+        <xs:element name="workplaceLabel">
+          <xs:complexType>
+            <xs:sequence>
+
+              <xs:element name="pictogram" minOccurs="0" maxOccurs="9">
+                <xs:complexType>
+                  <xs:attribute ref="url" use="required"/>
+                </xs:complexType>
+              </xs:element>
+
+              <xs:element name="precautionaryStatement" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+
+              <xs:element name="MSDS" type="xs:string" minOccurs="1" maxOccurs="1" />
+
+            </xs:sequence>
+
+            <!-- WORKPLACE ATTRIBUTES -->
+            <xs:attribute name="productIdentifier" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
